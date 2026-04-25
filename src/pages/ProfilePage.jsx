@@ -61,35 +61,6 @@ export default function ProfilePage() {
             </Button>
         </Space>
         </Card>
-        <Card style={{ maxWidth: 600, margin: "0 auto" }}>
-        <Space orientation="vertical" size="middle" style={{ width: "100%" }}>
-            <Title level={3}>Выши закупки</Title>
-
-            <div>
-            <Text strong>ID:</Text>
-            <br />
-            <Text>{user.id}</Text>
-            </div>
-
-            <div>
-            <Text strong>Email:</Text>
-            <br />
-            <Text>{user.email}</Text>
-            </div>
-
-            {user.name && (
-            <div>
-                <Text strong>Имя:</Text>
-                <br />
-                <Text>{user.name}</Text>
-            </div>
-            )}
-
-            <Button danger onClick={handleLogout}>
-            Выйти
-            </Button>
-        </Space>
-        </Card>
     </Row>
   );
 }

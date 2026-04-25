@@ -95,18 +95,6 @@ export default function LoginPage() {
             </Form.Item>
 
             <Form.Item>
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                }}
-              >
-                <Checkbox>Запомнить меня</Checkbox>
-                <a href="#">Забыли пароль?</a>
-              </div>
-            </Form.Item>
-
-            <Form.Item>
               <Button type="primary" htmlType="submit" block>
                 Войти
               </Button>
