@@ -6,15 +6,40 @@ import {
   Button,
   Typography,
   Checkbox,
+  message
 } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from "../shared/hooks/useAuth";
+import axios from "axios";
+
 
 const { Content } = Layout;
 const { Title, Text } = Typography;
 
 export default function LoginPage() {
-  const onFinish = (values) => {
-    console.log("LOGIN:", values);
+  const navigate = useNavigate();
+  const { user, setUser, loading } = useAuth();
+
+  const onFinish = async (values) => {
+    try {
+      const data = await axios.post(
+        "https://collective-purchase-backend-production.up.railway.app/auth/login",
+        { email: values.email, password: values.password },
+        {
+          withCredentials: true,
+        }
+      );
+
+      setUser(data.user);
+      navigate("/");
+      navigate(0)
+    } catch (error) {
+      const errorMessage = error.response?.data?.message || 
+          error.message || 
+          'Ошибка при входе';
+      message.error(errorMessage);
+    }
   };
 
   return (
@@ -89,7 +114,7 @@ export default function LoginPage() {
 
             <div style={{ textAlign: "center" }}>
               <Text type="secondary">Нет аккаунта?</Text>{" "}
-              <a href="#">Регистрация</a>
+              <a href="/register">Регистрация</a>
             </div>
           </Form>
         </Card>

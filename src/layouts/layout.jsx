@@ -1,11 +1,15 @@
 import { Outlet } from "react-router-dom";
 import { Layout, Typography, Button } from "antd";
+import { useAuth } from "../shared/hooks/useAuth";
+
 
 const { Header, Content, Footer } = Layout;
 const { Title } = Typography;
 
 
 export default function MainLayout() {
+const { user, loading } = useAuth();
+
   return (
     <>
     <Layout style={{ minHeight: "100vh" }}>
@@ -20,12 +24,18 @@ export default function MainLayout() {
 
       <div style={{ display: "flex", gap: 16 }}>
         <Button style={{ color: "#fff"}} type="link" href="/catalog">Закупки</Button>
-        <Button style={{ color: "#fff"}} type="link" href="/login">Профиль</Button>
+        {user ? (
+          <Button style={{ color: "#fff"}} type="link" href="/profile">Профиль</Button>
+        ) : (
+          <Button style={{ color: "#fff"}} type="link" href="/login" type="primary">Войти</Button>
+        )}
       </div>
 
       </Header>
 
-      <Outlet/>
+      <Content style={{ padding: 24, width: 1200, margin: "0 auto" }}>
+        <Outlet/>
+      </Content>
 
       <Footer style={{ textAlign: "center" }}>
         GroupBuy © 2026
