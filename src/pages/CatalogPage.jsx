@@ -68,7 +68,7 @@ useEffect(() => {
       const response = await axios.get("https://collective-purchase-backend-production.up.railway.app/api/group-purchases", {
         withCredentials: true,
       });
-      setData(response.data.slice(0, 3));
+      setData(response.data);
       console.log(data)
       setLoading(false)
     } catch (error) {
